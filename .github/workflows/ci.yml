@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e ".[test]"
+      - run: python -m pytest
+      - run: pdd inventory --repo examples/minimal-repo --out /tmp/pdd/inventory.json
+      - run: pdd generate --inventory /tmp/pdd/inventory.json --out /tmp/pdd/docs
+      - run: pdd review --docs /tmp/pdd/docs --inventory /tmp/pdd/inventory.json --out /tmp/pdd/review
