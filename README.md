@@ -26,7 +26,8 @@ PDG frames the work -> PDD produces artifacts -> PDD Chat consumes artifacts
 ## Quickstart
 
 ```bash
-python -m pip install -e .
+python -m pip install -e ".[test]"
+python -m pytest
 pdd inventory --repo . --out .pdd/inventory.json
 pdd generate --inventory .pdd/inventory.json --out docs/pdd
 pdd review --docs docs/pdd --inventory .pdd/inventory.json --out .pdd/review

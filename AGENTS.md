@@ -21,6 +21,7 @@ adapters.
 Run:
 
 ```bash
+python -m pip install -e ".[test]"
 python -m pytest
 pdd inventory --repo examples/minimal-repo --out /tmp/pdd/inventory.json
 pdd generate --inventory /tmp/pdd/inventory.json --out /tmp/pdd/docs
