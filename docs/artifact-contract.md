@@ -2,6 +2,13 @@
 
 PDD consumers should read artifacts from `.pdd/`.
 
+Known consumers and guards:
+
+- [PDG](https://github.com/bacoco/progressive-disclosure-guard) enforces when
+  PDD artifacts are required; it must not duplicate this engine.
+- [PDD-IAR](https://github.com/bacoco/progressive-disclosure-iar) reads this
+  artifact contract to investigate source evidence.
+
 Required artifacts:
 
 - `inventory.json`: scanned source evidence.

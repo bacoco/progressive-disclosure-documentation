@@ -6,6 +6,18 @@ indexing, and serving progressive documentation artifacts.
 PDD is not a chatbot. A chatbot can consume PDD artifacts, but the engine must
 work on its own.
 
+## Related Repositories
+
+- [PDG - Progressive Disclosure Guard](https://github.com/bacoco/progressive-disclosure-guard):
+  guardrails for agents and workflows that decide when PDD artifacts are
+  required.
+- [PDD-IAR - Investigative Autoregressive Retrieval](https://github.com/bacoco/progressive-disclosure-iar):
+  a consumer layer that investigates `.pdd/` artifacts and original source
+  evidence.
+
+PDD has no runtime dependency on PDG or PDD-IAR. PDG and PDD-IAR depend on the
+PDD artifact contract when they need durable documentation evidence.
+
 ## Relationship To PDG
 
 PDG is the agent guardrail. PDD is the documentation engine.
@@ -14,13 +26,13 @@ Use PDG to decide when durable documentation work must go through PDD. Use PDD
 to produce the actual source inventory, documentation, review receipts, stale
 removals, human override records, and searchable index.
 
-## Relationship To Chatbots
+## Relationship To PDD-IAR And Chatbots
 
-A PDD chatbot should consume `.pdd/` artifacts instead of rebuilding its own
-documentation pipeline:
+PDD-IAR and PDD chatbots should consume `.pdd/` artifacts instead of rebuilding
+their own documentation pipeline:
 
 ```text
-PDG frames the work -> PDD produces artifacts -> PDD Chat consumes artifacts
+PDG frames the work -> PDD produces artifacts -> PDD-IAR or PDD Chat consumes artifacts
 ```
 
 ## Quickstart
