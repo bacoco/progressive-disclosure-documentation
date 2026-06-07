@@ -52,6 +52,7 @@ PDD writes machine-readable artifacts under `.pdd/`:
   inventory.json
   source-map.json
   manifest.json
+  disclosure.json
   overrides.jsonl
   stale-removals.jsonl
   review/
@@ -60,6 +61,11 @@ PDD writes machine-readable artifacts under `.pdd/`:
     regression.json
   index.sqlite
 ```
+
+Generated documentation is a disclosure surface, not the source of truth. Consumers
+that answer questions must verify generated claims against `inventory.json`,
+`source-map.json`, review receipts, overrides, stale removals, and the original
+sources.
 
 ## Non-Goals
 

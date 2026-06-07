@@ -15,6 +15,10 @@ class SourceFile:
     stale: bool = False
     binary_asset: bool = False
     title: str = ""
+    source_type: str = ""
+    authority: str = "supporting"
+    freshness: str = "current"
+    version: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -31,6 +35,10 @@ class SourceFile:
             stale=bool(data.get("stale", False)),
             binary_asset=bool(data.get("binary_asset", False)),
             title=str(data.get("title", "")),
+            source_type=str(data.get("source_type", data.get("kind", "source"))),
+            authority=str(data.get("authority", "supporting")),
+            freshness=str(data.get("freshness", "current")),
+            version=str(data.get("version", "")),
         )
 
 

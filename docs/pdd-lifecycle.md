@@ -7,3 +7,7 @@
 5. Let chat or portal consumers use the artifacts.
 
 Updates must preserve human overrides and report stale removals.
+
+Consumers should treat the lifecycle as progressive disclosure: orient on the
+generated docs, verify against source maps and review receipts, then inspect
+source evidence before answering.

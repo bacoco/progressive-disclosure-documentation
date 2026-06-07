@@ -43,6 +43,22 @@ def _title(path: Path) -> str:
     return path.stem.replace("-", " ").replace("_", " ").strip().title()
 
 
+def _source_type(kind: str) -> str:
+    if kind == "code":
+        return "implementation"
+    return kind
+
+
+def _authority(kind: str, generated: bool, binary_asset: bool) -> str:
+    if generated:
+        return "derived"
+    if binary_asset:
+        return "asset"
+    if kind in {"code", "configuration", "documentation"}:
+        return "primary"
+    return "supporting"
+
+
 def scan_repo(root: str | Path) -> Inventory:
     root_path = Path(root).resolve()
     files: list[SourceFile] = []
@@ -52,10 +68,11 @@ def scan_repo(root: str | Path) -> Inventory:
             continue
         try:
             kind, relevance, generated, stale, binary = classify(path.relative_to(root_path))
+            sha256 = _sha(path)
             files.append(
                 SourceFile(
                     path=str(path.relative_to(root_path)),
-                    sha256=_sha(path),
+                    sha256=sha256,
                     bytes=path.stat().st_size,
                     kind=kind,
                     relevance=relevance,
@@ -63,6 +80,10 @@ def scan_repo(root: str | Path) -> Inventory:
                     stale=stale,
                     binary_asset=binary,
                     title=_title(path),
+                    source_type=_source_type(kind),
+                    authority=_authority(kind, generated, binary),
+                    freshness="stale" if stale else "current",
+                    version=sha256[:12],
                 )
             )
         except OSError as exc:
