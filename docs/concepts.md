@@ -7,3 +7,11 @@ PDD separates documentation work into explicit layers.
 - Review: what proof exists that docs are complete and grounded.
 - Index: what consumers can search.
 - Chat: optional consumer, outside the core engine.
+
+## Output Format: OKF
+
+Generated documentation uses the Open Knowledge Format (OKF): Markdown with a YAML frontmatter
+(`type`, `title`, `description`, `resource`, `tags`, `timestamp`) and cross-links between pages.
+This makes the output a portable, standard artifact any OKF-aware consumer can read, and it maps
+PDD's provenance into the document itself — the `resource` field points back to the grounding
+source. The `.pdd/` receipts remain the authority on provenance and review.

@@ -11,4 +11,8 @@ Required artifacts:
 - `review/grounding.json`: grounding receipt.
 - `review/regression.json`: regression receipt.
 
-Consumers must not assume generated Markdown alone is the source of truth.
+Generated Markdown documents carry an Open Knowledge Format (OKF) YAML frontmatter (`type`,
+`title`, `description`, `resource`, `tags`, `timestamp`) and cross-links; the `resource` field
+points back to the grounding source. This is a convenience for OKF-aware consumers — it does not
+change the rule below: consumers must not assume generated Markdown alone is the source of truth.
+The `.pdd/` receipts remain the authority on provenance and review.
