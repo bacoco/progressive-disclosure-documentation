@@ -49,7 +49,8 @@ pdd index --docs docs/pdd --out .pdd/index.sqlite
 ## Lifecycle
 
 - `inventory`: scan a repository and classify source files.
-- `generate`: create PDD documentation from an inventory.
+- `generate`: create PDD documentation from an inventory (Markdown in the Open Knowledge Format —
+  YAML frontmatter + cross-links).
 - `convert`: convert existing docs into PDD-shaped documentation.
 - `update`: regenerate only the PDD surfaces from current evidence.
 - `review`: produce coverage, grounding, and regression receipts.

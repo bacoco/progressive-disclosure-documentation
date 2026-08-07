@@ -13,6 +13,14 @@ themselves, but it is not the source of truth. Question-answering consumers must
 verify answers against the inventory, source map, review receipts, overrides,
 stale-removal records, and original source evidence.
 
+## Output Format: OKF
+
+Generated documentation uses the Open Knowledge Format (OKF): Markdown with a YAML frontmatter
+(`type`, `title`, `description`, `resource`, `tags`, `timestamp`) and cross-links between pages.
+This makes the output a portable, standard artifact any OKF-aware consumer can read, and it maps
+PDD's provenance into the document itself — the `resource` field points back to the grounding
+source. The `.pdd/` receipts remain the authority on provenance and review.
+
 ## PDD-IAR Consumers
 
 An investigative retrieval consumer can use PDD artifacts without becoming part

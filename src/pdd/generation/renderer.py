@@ -10,7 +10,9 @@ from pdd.generation.templates import architecture_page, index_page, sources_page
 from pdd.inventory.models import Inventory
 
 
-def generate_docs(inventory: Inventory, out_dir: str | Path) -> dict[str, object]:
+def generate_docs(
+    inventory: Inventory, out_dir: str | Path, generated_at: str | None = None
+) -> dict[str, object]:
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     pdd_dir = out.parent / ".pdd"
@@ -18,9 +20,9 @@ def generate_docs(inventory: Inventory, out_dir: str | Path) -> dict[str, object
 
     sources = selected_sources(inventory)
     docs = {
-        "INDEX.md": index_page(inventory, sources),
-        "sources.md": sources_page(sources),
-        "architecture.md": architecture_page(sources),
+        "INDEX.md": index_page(inventory, sources, generated_at),
+        "sources.md": sources_page(sources, generated_at),
+        "architecture.md": architecture_page(sources, generated_at),
     }
     for name, content in docs.items():
         (out / name).write_text(content, encoding="utf-8")
